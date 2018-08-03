@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="clearfix">
+        <ul class="vertical">
+            {% for category in categories %}
+            <li><a href="/products-category/{{ category.id }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="conteiner">
+            {% if products %}
+                <table id="products" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Назва товару</th>
+                        <th>Цiна</th>
+                        <th>Опис</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>
+                                <a href="/products/{{ product.id }}"> {{ product.name }} </a>
+                            </td>
+                            <td> {{ product.price }} </td>
+                            <td> {{ product.description }} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Товарiв не знайдено</p>
+            {% endif %}
+        </div>
+    </section>
+    {% include 'products/filterProducts.html.twig' %}
+{% endblock %}
