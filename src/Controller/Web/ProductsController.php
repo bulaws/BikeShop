@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Web;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,13 +21,13 @@ class ProductsController extends AbstractController
      * @param $filter
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showProducts(Request $request, Filter $filter) : Response
+    public function showProducts(Request $request) : Response
     {
+        $filter = new Filter();
         $doctrine = $this->getDoctrine();
         $form = $this->createForm(FilterType::class, $filter);
 
         $products =  $doctrine->getRepository(Product::class)->JoinedToProductImage();
-
         $categories =  $doctrine->getRepository(ProductCategory::class)->findAll();
 
         $form->handleRequest($request);

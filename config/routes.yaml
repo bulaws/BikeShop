@@ -1,43 +1,43 @@
 main:
     path: /
-    controller: App\Controller\PageContentController::main
+    controller: App\Controller\Web\PageContentController::main
 
 service:
     path: /service
-    controller: App\Controller\PageContentController::service
+    controller: App\Controller\Web\PageContentController::service
 
 contact:
     path: /contact
-    controller: App\Controller\PageContentController::contact
+    controller: App\Controller\Web\PageContentController::contact
 
 products:
     path: /products
-    controller: App\Controller\ProductsController::showProducts
+    controller: App\Controller\Web\ProductsController::showProducts
 
 product:
     path: /products/{id}
-    controller: App\Controller\ProductsController::showProduct
+    controller: App\Controller\Web\ProductsController::showProduct
 
 category:
     path: /products-category/{categoryId}
-    controller: App\Controller\ProductsController::showProductsCategory
+    controller: App\Controller\Web\ProductsController::showProductsCategory
 
 blog:
     path: /blog
-    controller: App\Controller\BlogController::index
+    controller: App\Controller\Web\BlogController::index
 
 article:
     path: /blog/{id}
-    controller: App\Controller\BlogController::showArticle
+    controller: App\Controller\Web\BlogController::showArticle
 
 createArticle:
     path: /article/create
-    controller: App\Controller\BlogController::createArticle
+    controller: App\Controller\Web\BlogController::createArticle
 
 updateArticle:
     path: /article/update/{article}
-    controller: App\Controller\BlogController::updateArticle
+    controller: App\Controller\Web\BlogController::updateArticle
 
 deleteArticle:
     path: /article/delete/{article}
-    controller: App\Controller\BlogController::deleteArticle
+    controller: App\Controller\Web\BlogController::deleteArticle

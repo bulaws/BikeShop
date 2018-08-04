@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Web;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,7 +71,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-    public function updateArticle(Request $request,Article $article)
+    public function updateArticle(Request $request, Article $article)
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
