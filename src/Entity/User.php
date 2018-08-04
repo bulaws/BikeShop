@@ -3,11 +3,20 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
+ * User
+ *
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity("userName",message="Username exist")
+ * @UniqueEntity("email",message="Email exist")
  */
-class User
+
+class User implements UserInterface, Serializable
 {
     /**
      * @ORM\Id()
@@ -19,7 +28,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $name;
+    private $userName;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -31,20 +40,21 @@ class User
      */
     private $password;
 
+    private $plainPassword;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUserName(): ?string
     {
-        return $this->name;
+        return $this->userName;
     }
 
-    public function setName(string $name): self
+    public function setUserName(string $userName): self
     {
-        $this->name = $name;
+        $this->userName = $userName;
 
         return $this;
     }
@@ -72,5 +82,50 @@ class User
 
         return $this;
     }
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
 
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->userName,
+            $this->password,
+        ]);
+    }
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->userName,
+            $this->password
+            ) = unserialize($serialized);
+    }
+    public function getRoles()
+    {
+        return [
+            'ROLE_USER',
+        ];
+    }
+    public function getSalt()
+    {
+        return null;
+    }
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
 }
