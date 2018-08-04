@@ -9,12 +9,14 @@
         </ul>
         <div class="conteiner">
             {% if products %}
+                {#{{  dump(products) }}#}
                 <table id="products" class="table table-striped">
                     <thead>
                     <tr>
                         <th>Назва товару</th>
                         <th>Цiна</th>
                         <th>Опис</th>
+                        <th>Фото</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,6 +27,7 @@
                             </td>
                             <td> {{ product.price }} </td>
                             <td> {{ product.description }} </td>
+                            <td> <img src="{{ product.productImage.path }}" ></td>
                         </tr>
                     {% endfor %}
                     </tbody>

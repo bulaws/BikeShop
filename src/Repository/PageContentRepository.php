@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\PageContent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Exception;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
 
 /**
  * @method PageContent|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,11 +23,19 @@ class PageContentRepository extends ServiceEntityRepository
 
     public function findByPageName($pageName): ?PageContent
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.pageName = :val')
-            ->setParameter('val', $pageName)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $query = null;
+
+        try {
+            $query = $this->createQueryBuilder('p')
+                ->andWhere('p.pageName = :val')
+                ->setParameter('val', $pageName)
+                ->getQuery()
+                ->getOneOrNullResult()
             ;
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+
+        return $query;
     }
 }

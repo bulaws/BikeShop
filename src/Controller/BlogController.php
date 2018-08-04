@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use App\Entity\Article;
 use App\Form\ArticleType;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BlogController extends AbstractController
 {
@@ -38,10 +39,7 @@ class BlogController extends AbstractController
             ->getRepository(Article::class)->find($id);
 
         if(!$article) {
-            return $this->render("blog/article.html.twig", [
-                'article' => null,
-                'articleId' => $id,
-            ]);
+           throw new NotFoundHttpException();
         }
         return $this->render("blog/article.html.twig", [
             'article' => $article,
@@ -52,8 +50,9 @@ class BlogController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function createArticle(Request $request,Article $article)
+    public function createArticle(Request $request)
     {
+        $article = new Article();
         $form = $this->createForm(ArticleType::class,  $article);
         $form->handleRequest($request);
 
@@ -61,6 +60,7 @@ class BlogController extends AbstractController
 
                 /** @var $newArticle Article */
             $newArticle = $form->getData();
+            $newArticle->setUpdateAt();
             $em = $this->getDoctrine()->getManager();
             $em->persist($newArticle);
             $em->flush();

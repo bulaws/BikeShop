@@ -11,7 +11,7 @@ use App\Entity\ProductImage;
 use App\Repository\ProductRepository;
 use App\Form\FilterType;
 use App\Model\Filter;
-use Symfony\Component\HttpKernel\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductsController extends AbstractController
 {
@@ -27,6 +27,7 @@ class ProductsController extends AbstractController
         $form = $this->createForm(FilterType::class, $filter);
 
         $products =  $doctrine->getRepository(Product::class)->JoinedToProductImage();
+
         $categories =  $doctrine->getRepository(ProductCategory::class)->findAll();
 
         $form->handleRequest($request);
@@ -55,14 +56,11 @@ class ProductsController extends AbstractController
     public function showProduct(int $id): Response
     {
         $product = $this->getDoctrine()
-                    ->getRepository(Product::class)
-                    ->find($id);
+            ->getRepository(Product::class)
+            ->find($id);
 
         if(!$product) {
-            return $this->render('products/product.html.twig', [
-                'product' => null,
-                'productId'=> $id,
-            ]);
+            throw new NotFoundHttpException();
         }
         $category = $product->getCategory()->getName();
 
@@ -86,10 +84,7 @@ class ProductsController extends AbstractController
         $products = $products->findByIdCategory($categoryId);
 
         if(!$products) {
-            return $this->render('products/productsCategory.html.twig', [
-                'products' => null,
-                'categoryId'=> $categoryId,
-            ]);
+            throw new NotFoundHttpException();
         }
 
         return $this->render("products/productsCategory.html.twig", [
