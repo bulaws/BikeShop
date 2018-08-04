@@ -28,11 +28,4 @@ class PageContentRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
             ;
     }
-
-    public function getPageContent($pageName)
-    {
-
-
-        return $contents;
-    }
 }

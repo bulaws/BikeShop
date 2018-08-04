@@ -12,7 +12,6 @@ use App\Form\ArticleType;
 
 class BlogController extends AbstractController
 {
-
     /**
      * Rendering index page
      *
@@ -20,8 +19,8 @@ class BlogController extends AbstractController
      */
     public function index() : Response
     {
-        $doctrine = $this->getDoctrine();
-        $articles = $doctrine->getRepository(Article::class)->findAll();
+        $articles = $this->getDoctrine()
+            ->getRepository(Article::class)->findAll();
 
         return $this->render("blog/blog.html.twig", [
             'articles' => $articles,
@@ -35,14 +34,19 @@ class BlogController extends AbstractController
      */
     public function showArticle($id) : Response
     {
-        $doctrine = $this->getDoctrine();
-        $article = $doctrine->getRepository(Article::class)->find($id);
+        $article = $this->getDoctrine()
+            ->getRepository(Article::class)->find($id);
 
+        if(!$article) {
+            return $this->render("blog/article.html.twig", [
+                'article' => null,
+                'articleId' => $id,
+            ]);
+        }
         return $this->render("blog/article.html.twig", [
             'article' => $article,
         ]);
     }
-
 
     /**
      * @param Request $request
@@ -57,7 +61,6 @@ class BlogController extends AbstractController
 
                 /** @var $newArticle Article */
             $newArticle = $form->getData();
-            $newArticle->setUpdateAt();
             $em = $this->getDoctrine()->getManager();
             $em->persist($newArticle);
             $em->flush();
@@ -94,8 +97,4 @@ class BlogController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('blog');
     }
-
-
-
-
 }

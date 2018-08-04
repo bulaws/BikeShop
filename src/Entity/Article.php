@@ -36,6 +36,11 @@ class Article
      */
     private $updateAt;
 
+    public function __construct()
+    {
+        $this->updateAt = new \DateTime();
+    }
+
     public function getId()
     {
         return $this->id;
@@ -80,11 +85,5 @@ class Article
     public function getUpdateAt(): ?\DateTimeInterface
     {
         return $this->updateAt;
-    }
-
-    public function setUpdateAt(): self
-    {
-        $this->updateAt = new \DateTime();
-        return $this;
     }
 }
