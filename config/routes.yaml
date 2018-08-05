@@ -2,6 +2,18 @@ main:
     path: /
     controller: App\Controller\Web\PageContentController::main
 
+login:
+    path: /login
+    controller: App\Controller\Web\LoginController::loginAction
+
+logout:
+    path: /logout
+    controller: App\Controller\Web\LoginController::logoutAction
+
+registration:
+    path: /registration
+    controller: App\Controller\Web\RegistrationController::registration
+
 service:
     path: /service
     controller: App\Controller\Web\PageContentController::service

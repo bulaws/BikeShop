@@ -6,6 +6,7 @@ use App\Entity\PageContent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Exception;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 /**
@@ -32,8 +33,8 @@ class PageContentRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getOneOrNullResult()
             ;
-        } catch (Exception $e) {
-            $e->getMessage();
+        } catch (NotFoundHttpException $e) {
+            throw new NotFoundHttpException();
         }
 
         return $query;

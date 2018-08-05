@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
@@ -27,11 +29,14 @@ class User implements UserInterface, Serializable
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $userName;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
@@ -41,6 +46,13 @@ class User implements UserInterface, Serializable
     private $password;
 
     private $plainPassword;
+
+    private $roles;
+
+    public function __construct()
+    {
+        $this->roles = ['ROLE_USER'];
+    }
 
     public function getId()
     {
@@ -116,9 +128,7 @@ class User implements UserInterface, Serializable
     }
     public function getRoles()
     {
-        return [
-            'ROLE_USER',
-        ];
+        return $this->roles;
     }
     public function getSalt()
     {
