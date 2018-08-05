@@ -6,20 +6,20 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Filter
 {
-    private $searchProduct;
+    private $search;
     private $priceFrom;
     private $priceTo;
     private $price;
 
 
-    public function getSearchProduct(): ?string
+    public function getSearch(): ?string
     {
-        return $this->searchProduct;
+        return $this->search;
     }
 
-    public function setSearchProduct(?string $searchProduct): self
+    public function setSearchProduct(?string $search): self
     {
-        $this->searchProduct = $searchProduct;
+        $this->search = $search;
 
         return $this;
     }
@@ -48,9 +48,6 @@ class Filter
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPrice()
     {
         return $this->price;

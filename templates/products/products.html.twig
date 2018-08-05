@@ -9,7 +9,6 @@
         </ul>
         <div class="conteiner">
             {% if products %}
-                {#{{  dump(products) }}#}
                 <table id="products" class="table table-striped">
                     <thead>
                     <tr>
@@ -37,11 +36,25 @@
             {% endif %}
         </div>
     </section>
-   {# {% include 'products/filterProducts.html.twig' %}#}
     <div>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-    {{ dump(form) }}
+        <div>
+            {{ form_start(form) }}
+            {{ form_widget(form.search) }}
+        </div>
+        <div>
+            {{ form_widget(form.pricefrom) }}
+        </div>
+        <div>
+            {{ form_widget(form.priceto) }}
+        </div>
+        <div>
+            {{ form_widget(form.price) }}
+        </div>
+        <div>
+            {{ form_widget(form.save) }}
+            {{ form_end(form) }}
+        </div>
     </div>
+    {{ dump(form) }}
+
 {% endblock %}

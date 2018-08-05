@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-
 use App\Model\Filter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,19 +15,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FilterType extends AbstractType
 {
-    public function buildFilterForm(FormBuilderInterface $builder)
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildFilterForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('search', SearchType::class)
-            ->add('priceFrom', TextType::class)
-            ->add('priceTo', TextType::class)
+            ->add('search', SearchType::class, ['attr' => ['class' => 'form-control']])
+            ->add('priceFrom', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('priceTo', TextType::class, ['attr' => ['class' => 'form-control']])
             ->add('Price',ChoiceType::class, [
                 'choices' => [
                     'increase' => 'asc',
                     'decrease' => 'desc',
-                  ]])
+                  ]], ['attr' => ['class' => 'form-control']])
             ->add('save', SubmitType::class, [
-                'label' => 'Save'])
+                'label' => 'Зберегти',
+                'attr' => ['class' => 'btn btn-primary mt-2'] ])
         ;
     }
 
