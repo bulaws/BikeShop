@@ -20,10 +20,12 @@
                     <td> {{ article.text }} </td>
                     <td> {{ article.author }} </td>
                     <td> {{ article.updateAt|date('Y-m-d H:i') }} </td>
+                    <td><a href="/article/update/{{ article.id }}" class="btn btn-dark">Редагувати</a></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        <a href="/article/create" class="btn btn-light">Створити нову статтю</a>
     {% else %}
         <p>Статей не знайдено</p>
     {% endif %}

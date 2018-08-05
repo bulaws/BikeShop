@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if articles %}
+    {% if article %}
         <table  class="table table-striped">
             <thead>
             <tr>
@@ -9,10 +9,10 @@
                 <th>Опис</th>
                 <th>Автор</th>
                 <th>Дата</th>
+                <th>Опцiї</th>
             </tr>
             </thead>
             <tbody>
-            {% for article in articles %}
                 <tr>
                     <td>
                         <a href="/blog/{{ article.id }}"> {{ article.name }} </a>
@@ -20,11 +20,14 @@
                     <td> {{ article.text }} </td>
                     <td> {{ article.author }} </td>
                     <td> {{ article.updateAt|date('Y-m-d H:i') }} </td>
+                    <td>
+                        <a href="/article/update/{{ article.id }}" class="btn btn-dark">Редагувати</a>
+                        <a href="/article/delete/{{ article.id }}" class="btn btn-danger">Видалити</a>
+                    </td>
                 </tr>
-            {% endfor %}
             </tbody>
         </table>
     {% else %}
-        <p>Статей не знайдено</p>
+        <p>Статю {{ articleId }} не знайдено</p>
     {% endif %}
 {% endblock %}

@@ -42,14 +42,21 @@ article:
     path: /blog/{id}
     controller: App\Controller\Web\BlogController::showArticle
 
+adminBlog:
+    path: /admin/blog
+    controller: App\Controller\Admin\AdminController::index
+
+adminArticle:
+    path: /admin/blog/{id}
+    controller: App\Controller\Admin\AdminController::showArticle
 createArticle:
-    path: /article/create
-    controller: App\Controller\Web\BlogController::createArticle
+    path: /admin/article/create
+    controller: App\Controller\Admin\AdminBlogController::createArticle
 
 updateArticle:
-    path: /article/update/{article}
-    controller: App\Controller\Web\BlogController::updateArticle
+    path: /admin/article/update/{article}
+    controller: App\Controller\Admin\AdminBlogController::updateArticle
 
 deleteArticle:
-    path: /article/delete/{article}
-    controller: App\Controller\Web\BlogController::deleteArticle
+    path: /admin/article/delete/{article}
+    controller: App\Controller\Admin\AdminBlogController::deleteArticle
