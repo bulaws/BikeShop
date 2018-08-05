@@ -11,7 +11,6 @@ use App\Entity\ProductImage;
 use App\Repository\ProductRepository;
 use App\Form\FilterType;
 use App\Model\Filter;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductsController extends AbstractController
 {
@@ -24,26 +23,26 @@ class ProductsController extends AbstractController
     {
         $filter = new Filter();
         $doctrine = $this->getDoctrine();
-        $formFilter = $this->createForm(FilterType::class, $filter);
+        $form = $this->createForm(FilterType::class, $filter);
 
         $products =  $doctrine->getRepository(Product::class)->JoinedToProductImage();
         $categories =  $doctrine->getRepository(ProductCategory::class)->findAll();
 
-        $formFilter->handleRequest($request);
+        $form->handleRequest($request);
 
-        if ( $formFilter->isSubmitted() &&  $formFilter->isValid()) {
+        if ( $form->isSubmitted() &&  $form->isValid()) {
 
             return $this->render("products/products.html.twig", [
                 'products' => $products,
                 'categories' => $categories,
-                'form' => $formFilter->createView(),
+                'form' => $form->createView(),
             ]);
         }
 
         return $this->render("products/products.html.twig", [
             'products' => $products,
             'categories' => $categories,
-            'form' =>  $formFilter->createView(),
+            'form' =>  $form->createView(),
         ]);
     }
 
@@ -59,7 +58,7 @@ class ProductsController extends AbstractController
             ->find($id);
 
         if(!$product) {
-            throw new NotFoundHttpException();
+            throw $this->createNotFoundException();
         }
         $category = $product->getCategory()->getName();
 
@@ -82,7 +81,7 @@ class ProductsController extends AbstractController
         $products = $products->findByIdCategory($categoryId);
 
         if(!$products) {
-            throw new NotFoundHttpException();
+            throw $this->createNotFoundException();
         }
 
         return $this->render("products/productsCategory.html.twig", [

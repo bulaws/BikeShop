@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
@@ -33,7 +32,7 @@ class RegistrationController extends Controller
         }
 
         return $this->render('registration/registration.html.twig', [
-            'form' => $form->createView()
-        ]);
+                'form' => $form->createView()
+                ]);
     }
 }

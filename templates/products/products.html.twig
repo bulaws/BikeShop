@@ -37,22 +37,6 @@
         </div>
     </section>
     <div>
-        <div>
-            {{ form_start(form) }}
-            {{ form_widget(form.search) }}
-        </div>
-        <div>
-            {{ form_widget(form.pricefrom) }}
-        </div>
-        <div>
-            {{ form_widget(form.priceto) }}
-        </div>
-        <div>
-            {{ form_widget(form.price) }}
-        </div>
-        <div>
-            {{ form_widget(form.save) }}
-            {{ form_end(form) }}
-        </div>
+        {% include 'products/filterProducts.html.twig' %}
     </div>
 {% endblock %}

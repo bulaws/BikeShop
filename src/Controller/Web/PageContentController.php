@@ -51,7 +51,9 @@ class PageContentController extends AbstractController
         /** @var PageContentRepository $repository */
         $repository =  $manager->getRepository(PageContent::class);
         $contents = $repository->findByPageName($pageName);
-
+        if(!$contents) {
+            throw $this->createNotFoundException();
+        }
         return $this->render('pageContent/pageContent.html.twig', [
             'contents' => $contents,
         ]);

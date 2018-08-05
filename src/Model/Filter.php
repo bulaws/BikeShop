@@ -11,7 +11,6 @@ class Filter
     private $priceTo;
     private $price;
 
-
     public function getSearch(): ?string
     {
         return $this->search;
@@ -59,5 +58,4 @@ class Filter
 
         return $this;
     }
-
 }

@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use App\Entity\Article;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BlogController extends AbstractController
 {
@@ -36,7 +35,7 @@ class BlogController extends AbstractController
             ->getRepository(Article::class)->find($id);
 
         if(!$article) {
-           throw new NotFoundHttpException();
+           throw $this->createNotFoundException();
         }
         return $this->render("blog/article.html.twig", [
             'article' => $article,
