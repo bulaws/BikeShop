@@ -37,5 +37,11 @@
             {% endif %}
         </div>
     </section>
-    {% include 'products/filterProducts.html.twig' %}
+   {# {% include 'products/filterProducts.html.twig' %}#}
+    <div>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    {{ dump(form) }}
+    </div>
 {% endblock %}

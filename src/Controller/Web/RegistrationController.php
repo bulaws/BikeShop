@@ -36,30 +36,4 @@ class RegistrationController extends Controller
             'form' => $form->createView()
         ]);
     }
-
-
-    /*private function registrationManager(User $user)
-    {
-        $password = $this
-            ->get('security.password_encoder')
-            ->encodePassword(
-                $user,
-                $user->getPlainPassword()
-            );
-
-        $user->setPassword($password);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-        $token = new UsernamePasswordToken(
-            $user,
-            $password,
-            'main'
-        );
-        $this->get('security.token_storage')->setToken($token);
-        $this->get('session')->set('_security_main', serialize($token));
-
-    }*/
-
 }

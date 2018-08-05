@@ -18,33 +18,32 @@ class ProductsController extends AbstractController
     /**
      * Rendering products page
      * @param $request
-     * @param $filter
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showProducts(Request $request) : Response
     {
         $filter = new Filter();
         $doctrine = $this->getDoctrine();
-        $form = $this->createForm(FilterType::class, $filter);
+        $formFilter = $this->createForm(FilterType::class, $filter);
 
         $products =  $doctrine->getRepository(Product::class)->JoinedToProductImage();
         $categories =  $doctrine->getRepository(ProductCategory::class)->findAll();
 
-        $form->handleRequest($request);
+        $formFilter->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ( $formFilter->isSubmitted() &&  $formFilter->isValid()) {
 
             return $this->render("products/products.html.twig", [
                 'products' => $products,
                 'categories' => $categories,
-                'form' => $form->createView(),
+                'form' => $formFilter->createView(),
             ]);
         }
 
         return $this->render("products/products.html.twig", [
             'products' => $products,
             'categories' => $categories,
-            'form' => $form->createView(),
+            'form' =>  $formFilter->createView(),
         ]);
     }
 
@@ -78,7 +77,6 @@ class ProductsController extends AbstractController
     public function showProductsCategory(int $categoryId): Response
     {
         /** @var ProductRepository $products */
-
         $products = $this->getDoctrine()
             ->getRepository(Product::class);
         $products = $products->findByIdCategory($categoryId);

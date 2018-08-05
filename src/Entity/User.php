@@ -94,16 +94,15 @@ class User implements UserInterface, Serializable
 
         return $this;
     }
-    /**
-     * @return mixed
-     */
+  
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
     /**
-     * @param mixed $plainPassword
+     * @param  $plainPassword
+     * @return void
      */
     public function setPlainPassword($plainPassword): void
     {
