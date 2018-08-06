@@ -17,11 +17,6 @@ final class Version20180727161032 extends AbstractMigration
 
         $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, text LONGTEXT NOT NULL, author VARCHAR(100) NOT NULL, update_at DATETIME DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE product CHANGE category_id category_id INT DEFAULT NULL');
-        $this->addSql("INSERT INTO article 
-                            ( name, text, author, update_at) 
-                      VALUES ('Якiснi', 'Lorem Ipsum - це текст-\"риба\", що використовується в друкарстві та дизайні.',
-                              'Боб', now()),
-                             ('Швидкi', 'Lorem Ipsum - це текст-\"риба\".', 'Бред', now())");
     }
 
     public function down(Schema $schema) : void
@@ -31,6 +26,5 @@ final class Version20180727161032 extends AbstractMigration
 
         $this->addSql('DROP TABLE article');
         $this->addSql('ALTER TABLE product CHANGE category_id category_id INT NOT NULL');
-        $this->addSql("DELETE FROM article");
     }
 }
