@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Traits\ArticleTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminBlogController extends AbstractController
 {
+    use ArticleTrait;
+
     /**
      * Rendering admin index page
      *
@@ -18,8 +21,7 @@ class AdminBlogController extends AbstractController
      */
     public function index() : Response
     {
-        $articles = $this->getDoctrine()
-            ->getRepository(Article::class)->findAll();
+        $articles = $this->showArticles();
 
         return $this->render("admin/blog/blog.html.twig", [
             'articles' => $articles,
@@ -29,12 +31,12 @@ class AdminBlogController extends AbstractController
     /**
      * Rendering admin article page
      *
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showArticle($id) : Response
+    public function showArticle(Article $id) : Response
     {
-        $article = $this->getDoctrine()
-            ->getRepository(Article::class)->find($id);
+        $article = $this->showArticle($id);
 
         if(!$article) {
             throw new NotFoundHttpException();
@@ -43,9 +45,6 @@ class AdminBlogController extends AbstractController
             'article' => $article,
         ]);
     }
-
-
-
 
     /**
      * @param Request $request
