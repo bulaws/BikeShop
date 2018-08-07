@@ -1,1 +1,43 @@
-{{ dump(basketList) }}
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="">
+
+        <div class="conteiner">
+            {% if basketList %}
+                <table id="products" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Назва товару</th>
+                        <th>Цiна</th>
+                        <th>Опис</th>
+                        <th>Фото</th>
+                        <th>Опцiї</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in basketList %}
+                        <tr>
+                            <td>
+                                <a href="/products/{{ product.id }}"> {{ product.name }} </a>
+                            </td>
+                            <td> {{ product.price }} </td>
+                            <td> {{ product.description }} </td>
+                            <td>
+                                <img src="{{ product.productImage.path }}" >
+                            </td>
+                            <td>
+                                <a href="/products/{{ product.id }}"> {{ product.name }} </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Корзина пуста</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

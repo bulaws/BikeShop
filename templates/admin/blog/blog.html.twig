@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <section >
+        <div class="wrapper">
     {% if articles %}
+
         <table  class="table table-striped">
             <thead>
             <tr>
@@ -9,6 +12,7 @@
                 <th>Опис</th>
                 <th>Автор</th>
                 <th>Дата</th>
+                <th>Опцiї</th>
             </tr>
             </thead>
             <tbody>
@@ -25,8 +29,10 @@
             {% endfor %}
             </tbody>
         </table>
-        <a href="/admin/article/create" class="btn btn-light">Створити нову статтю</a>
     {% else %}
         <p>Статей не знайдено</p>
     {% endif %}
+            <a href="/admin/article/create" class="btn btn-light">Створити нову статтю</a>
+    </div>
+    </section>
 {% endblock %}

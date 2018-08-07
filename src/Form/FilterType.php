@@ -37,8 +37,7 @@ class FilterType extends AbstractType
                         'decrease' => 'desc',
                   ]], ['attr' => ['class' => 'form-control']])
             ->add('save', SubmitType::class, [
-                'label' => 'Знайти',
-                'attr' => ['class' => 'btn btn-primary mt-2'] ])
+                'label' => 'Знайти'])
         ;
     }
 

@@ -9,115 +9,101 @@
     display: block;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-}
-
-.wrapper {
-    margin-left: 125px;
-    width: 1100px;
-    height: 1000px;
-    background: #ffffff;
-    box-sizing: border-box;
-}
-
 .logo {
-    margin: 40px 0 0 45px;
+    margin: 20px;
 }
 
-.menu {
-    margin: 40px 45px 0 45px;
+a{
+    text-decoration: none
+}
+nav{
     background: #4e4d4d;
 }
-
-.menu li {
-    display: inline-block;
+.wrapper{
+    width: 1000px;
+    margin: 0 auto;
 }
-
-.menu a {
+.flex{
+    display: flex;
+}
+.menu{
+    justify-content: flex-start;
+    margin: 0;
+}
+.menu li a{
     display: block;
-    color: #fff;
-    padding: 0 20px;
-    text-decoration: none;
-    line-height: 40px;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    border-width: 0 1px 0 1px;
+    border-color: transparent;
+    border-style: solid;
     transition: 0.3s;
 }
-
-.menu a:hover {
-    background: #464646;
-    border-left: 1px solid #c8c8c8;
-    border-right: 1px solid #c8c8c8;
+.menu li a:hover{
+    background: #333;
+    font-size: 14px;
+    border-color: #666;
 }
-
-ul {
-    list-style: none;
-}
-
-.vertical {
-    border: 1px solid #c8c8c8;
-    margin: 40px 0 0 45px;
-    float: left;
-
-}
-
-.vertical li {
-    border-bottom: 1px solid #c8c8c8;
-}
-
-.vertical li:last-child {
-    border-bottom: none;
-}
-
-.vertical a {
+.sidebar{
     width: 240px;
+}
+.sidebar-menu{
+    margin-top: 40px;
+    width: 100%;
+    border: 1px solid #aaa;
+}
+.sidebar-menu li{
+    border-bottom: 1px solid #aaa;
+}
+.sidebar-menu li:last-child {
+    border: none;
+}
+.sidebar-menu li a{
     display: block;
-    text-decoration: none;
-    padding: 0 0 0 20px;
-    text-align: left;
-    line-height: 46px;
-    box-sizing: border-box;
+    padding: 10px 20px;
+    background-color: #eee;
+    color: #222
+}
+.sidebar-menu li a:hover{
+    background-color: #bbb;
+}
+.content{
+    flex-grow: 1;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+#filter input,
+#filter button{
+    border: none;
+    width: 100%;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+}
+#filter input{
+    border: 1px solid #ddd;
+}
+#filter button{
+    background-color: royalblue;
+    color: white;
+    transition: 0.2s;
+}
+#filter button:hover{
+    background-color: rgb(53, 82, 170);
+    color: white
+}
+.footer-wrapper{
+    justify-content: space-between;
 }
 
-.vertical a:hover {
-    background: #f9f9f9;
-    padding-left: 30px;
+body{
+    min-height: 100vw;
 }
-
-.conteiner {
-    float: right;
-    margin: 40px 45px 45px 45px;
-}
-
-.bike {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 670px;
-    height: 400px;
-    border: 1px solid #c8c8c8;
-}
-
-.conteiner img {
-    width: 100px;
-    height: 100px;
-}
-
-.text {
-    width: 650px;
-    text-align: left;
-    margin: 40px 0 0 20px;
-}
-
-footer {
-    margin: 40px 45px 0 45px;
-    background: #e1e1e1;
-}
-
 .last {
-    float: left;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
 }
 
 .last li {
@@ -136,8 +122,56 @@ footer {
 }
 
 footer p {
-    /*width: 200px;*/
+    width: 200px;
     float: right;
     line-height: 46px;
     margin-right: 20px;
+}
+.content img {
+    width: 100px;
+    height: 100px;
+}
+.text {
+    width: 650px;
+    text-align: left;
+    margin: 40px 0 0 20px;
+}
+.bike {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 670px;
+    height: 400px;
+    border: 1px solid #c8c8c8;
+}
+
+li{
+    list-style: none;
+}
+
+footer{
+    background: #eee;
+    margin-top: 40px;
+}
+
+.header-menu{
+    justify-content: space-between;
+}
+
+.btn-box{
+    height: 40px;
+}
+.btn-box  a{
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    border-width: 0 1px 0 1px;
+    border-color: transparent;
+    border-style: solid;
+    transition: 0.3s;
+}
+
+ul{
+    margin: 0;
 }

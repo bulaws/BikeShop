@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="wrapper">
     {% if article %}
         <table  class="table table-striped">
             <thead>
@@ -25,4 +26,5 @@
     {% else %}
         <p>Статю {{ articleId }} не знайдено</p>
     {% endif %}
+    </div>
 {% endblock %}

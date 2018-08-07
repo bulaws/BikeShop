@@ -2,6 +2,7 @@
 
 {% block body %}
     {% if article %}
+        <div class="wrapper">
         <table  class="table table-striped">
             <thead>
             <tr>
@@ -10,6 +11,7 @@
                 <th>Автор</th>
                 <th>Дата</th>
                 <th>Опцiї</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -29,6 +31,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     {% else %}
         <p>Статю {{ articleId }} не знайдено</p>
     {% endif %}

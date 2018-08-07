@@ -69,3 +69,7 @@ basket:
 addToBascet:
     path: /basket/{id}
     controller: App\Controller\Web\BasketController::addToBasket
+
+deleteFromBascet:
+    path: /basket/delete/{id}
+    controller: App\Controller\Web\BasketController::addToBasket
