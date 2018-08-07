@@ -16,7 +16,7 @@ class Filter
         return $this->search;
     }
 
-    public function setSearchProduct(?string $search): self
+    public function setSearch(?string $search): self
     {
         $this->search = $search;
 

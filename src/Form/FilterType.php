@@ -22,16 +22,22 @@ class FilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('search', TextType::class)
-            ->add('priceFrom', TextType::class)
-            ->add('priceTo', TextType::class)
+            ->add('search', TextType::class, [
+                'required' => false
+            ])
+            ->add('priceFrom', TextType::class, [
+                'required' => false
+            ])
+            ->add('priceTo', TextType::class, [
+                'required' => false
+            ])
             ->add('price',ChoiceType::class, [
                     'choices' => [
                         'increase' => 'asc',
                         'decrease' => 'desc',
                   ]], ['attr' => ['class' => 'form-control']])
             ->add('save', SubmitType::class, [
-                'label' => 'Зберегти',
+                'label' => 'Знайти',
                 'attr' => ['class' => 'btn btn-primary mt-2'] ])
         ;
     }

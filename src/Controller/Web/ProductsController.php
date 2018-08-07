@@ -2,6 +2,7 @@
 
 namespace App\Controller\Web;
 
+use App\Traits\ProductTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,23 +15,33 @@ use App\Model\Filter;
 
 class ProductsController extends AbstractController
 {
+    use ProductTrait;
+
     /**
      * Rendering products page
      * @param $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showProducts(Request $request) : Response
+    public function showProducts(Request $request): Response
     {
-        $filter = new Filter();
         $doctrine = $this->getDoctrine();
-        $form = $this->createForm(FilterType::class, $filter);
 
-        $products =  $doctrine->getRepository(Product::class)->JoinedToProductImage();
-        $categories =  $doctrine->getRepository(ProductCategory::class)->findAll();
+        $filter = new Filter();
+        $form = $this->createForm(FilterType::class, $filter);
+        $products =  $doctrine->getRepository(Product::class)
+            ->JoinedToProductImage();
+        $categories =  $doctrine->getRepository(ProductCategory::class)
+            ->findAll();
 
         $form->handleRequest($request);
 
         if ( $form->isSubmitted() &&  $form->isValid()) {
+
+            $filter =$form->getData();
+
+            /** @var ProductRepository $products */
+            $products = $doctrine->getRepository(Product::class)
+                ->findByFilter($filter);
 
             return $this->render("products/products.html.twig", [
                 'products' => $products,
@@ -51,11 +62,9 @@ class ProductsController extends AbstractController
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showProduct(int $id): Response
+    public function showProduct(Product $id): Response
     {
-        $product = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->find($id);
+        $product = $this->getProduct($id, $this->getDoctrine());
 
         if(!$product) {
             throw $this->createNotFoundException();

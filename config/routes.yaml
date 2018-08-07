@@ -44,19 +44,28 @@ article:
 
 adminBlog:
     path: /admin/blog
-    controller: App\Controller\Admin\AdminController::index
+    controller: App\Controller\Admin\AdminBlogController::index
 
 adminArticle:
     path: /admin/blog/{id}
-    controller: App\Controller\Admin\AdminController::showArticle
+    controller: App\Controller\Admin\AdminBlogController::showArticle
+
 createArticle:
     path: /admin/article/create
     controller: App\Controller\Admin\AdminBlogController::createArticle
 
 updateArticle:
-    path: /admin/article/update/{article}
+    path: /admin/article/update/{id}
     controller: App\Controller\Admin\AdminBlogController::updateArticle
 
 deleteArticle:
-    path: /admin/article/delete/{article}
+    path: /admin/article/delete/{id}
     controller: App\Controller\Admin\AdminBlogController::deleteArticle
+
+basket:
+    path: /basket
+    controller: App\Controller\Web\BasketController::index
+
+addToBascet:
+    path: /basket/{id}
+    controller: App\Controller\Web\BasketController::addToBasket

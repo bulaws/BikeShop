@@ -21,7 +21,7 @@ class AdminBlogController extends AbstractController
      */
     public function index() : Response
     {
-        $articles = $this->showArticles();
+        $articles = $this->getArticles();
 
         return $this->render("admin/blog/blog.html.twig", [
             'articles' => $articles,
@@ -36,7 +36,7 @@ class AdminBlogController extends AbstractController
      */
     public function showArticle(Article $id) : Response
     {
-        $article = $this->showArticle($id);
+        $article = $this->getArticle($id);
 
         if(!$article) {
             throw new NotFoundHttpException();

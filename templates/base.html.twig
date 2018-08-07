@@ -9,11 +9,11 @@
         {% endblock %}
     </head>
     <body>
-        <div class="wrapper">
-            {% include '_header.html.twig' %}
-            {% block body %}{% endblock %}
-            {% include '_footer.html.twig' %}
-        </div>
+
+        {% include '_header.html.twig' %}
+        {% block body %}{% endblock %}
+        {% include '_footer.html.twig' %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -23,8 +23,8 @@ class BlogController extends AbstractController
         $articles = $this->getArticles();
 
         return $this->render("blog/blog.html.twig", [
-                    'articles' => $articles,
-                ]);
+                  'articles' => $articles,
+               ]);
     }
 
     /**
@@ -41,7 +41,7 @@ class BlogController extends AbstractController
            throw $this->createNotFoundException();
         }
         return $this->render("blog/article.html.twig", [
-                    'article' => $article,
-                ]);
+                   'article' => $article,
+               ]);
     }
 }

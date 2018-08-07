@@ -10,6 +10,7 @@
                     <th>Категорiя</th>
                     <th>Цiна</th>
                     <th>Опис</th>
+                    <th>Опцiї</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -18,11 +19,14 @@
                         <td> {{ category }} </td>
                         <td> {{ product.price }} </td>
                         <td> {{ product.description }} </td>
+                        <td>
+                            <a href="/basket/{{ product.id }}" class="btn btn-light">В корзину</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         {% else %}
-            <p>Товар {{ productId }} не знайдено</p>
+            <p>Товар {{ product.id }} не знайдено</p>
         {% endif %}
     </section>
 {% endblock %}

@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
-use App\Entity\ProductCategory;
+use App\Model\Filter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -42,5 +42,43 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function JoinedToProductImageById($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.productImage', 'c')
+            ->where('c.product = p.id')
+            ->andWhere('p.id = val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByFilter(object $filter)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->leftJoin('p.productImage', 'c')
+            ->where('c.product = p.id')
+            ;
+        if($filter->getSearch()) {
+            $query->andWhere('p.name LiKE :name')
+                ->setParameter('name', '%' .$filter->getSearch() .'%');
+        }
+        if($filter->getPriceFrom()) {
+            $query->andWhere('p.price >= :from')
+                ->setParameter('from', $filter->getPriceFrom());
+        }
+        if($filter->getPriceTo()) {
+            $query->andWhere('p.price <= :to')
+                ->setParameter('to', $filter->getPriceTo());
+        }
+
+        return $query->orderBy('p.price', $filter->getPrice())
+            ->getQuery()
+            ->getResult()
+            ;
+
     }
 }

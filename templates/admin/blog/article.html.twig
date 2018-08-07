@@ -22,6 +22,8 @@
                     <td> {{ article.updateAt|date('Y-m-d H:i') }} </td>
                     <td>
                         <a href="/article/update/{{ article.id }}" class="btn btn-dark">Редагувати</a>
+                    </td>
+                    <td>
                         <a href="/article/delete/{{ article.id }}" class="btn btn-danger">Видалити</a>
                     </td>
                 </tr>
