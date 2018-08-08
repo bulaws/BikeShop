@@ -89,11 +89,11 @@ class AdminBlogController extends AbstractController
     public function deleteArticle(Article $article)
     {
         if ($article === null) {
-            return $this->redirectToRoute('blog');
+            return $this->redirectToRoute('adminBlog');
         }
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();
-        return $this->redirectToRoute('blog');
+        return $this->redirectToRoute('adminBlog');
     }
 }

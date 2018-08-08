@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/adminBase.html.twig' %}
 
 {% block body %}
     {% if article %}
@@ -17,22 +17,22 @@
             <tbody>
                 <tr>
                     <td>
-                        <a href="/blog/{{ article.id }}"> {{ article.name }} </a>
+                        <a href="/admin/blog/{{ article.id }}"> {{ article.name }} </a>
                     </td>
                     <td> {{ article.text }} </td>
                     <td> {{ article.author }} </td>
                     <td> {{ article.updateAt|date('Y-m-d H:i') }} </td>
                     <td>
-                        <a href="/article/update/{{ article.id }}" class="btn btn-dark">Редагувати</a>
+                        <a href="/admin/article/update/{{ article.id }}" class="btn btn-dark">Редагувати</a>
                     </td>
                     <td>
-                        <a href="/article/delete/{{ article.id }}" class="btn btn-danger">Видалити</a>
+                        <a href="/admin/article/delete/{{ article.id }}" class="btn btn-danger">Видалити</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         </div>
     {% else %}
-        <p>Статю {{ articleId }} не знайдено</p>
+        <p>Статю не знайдено</p>
     {% endif %}
 {% endblock %}
