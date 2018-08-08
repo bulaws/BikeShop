@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="clearfix">
-        <div>
+    <section class="wrapper">
             {% if products %}
                 <table id="products" class="table table-striped">
                     <thead>
@@ -27,6 +26,5 @@
             {% else %}
                 <p>Категорiї {{ categoryId }} не знайдено</p>
             {% endif %}
-        </div>
     </section>
 {% endblock %}

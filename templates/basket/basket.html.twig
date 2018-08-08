@@ -3,9 +3,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="">
-
-        <div class="conteiner">
+    <section class="wrapper">
             {% if basketList %}
                 <table id="products" class="table table-striped">
                     <thead>
@@ -29,7 +27,9 @@
                                 <img src="{{ product.productImage.path }}" >
                             </td>
                             <td>
-                                <a href="/products/{{ product.id }}"> {{ product.name }} </a>
+                            <td>
+                                <a href="/basket/delete/{{ product.id }}" class="btn btn-dark">Видалити</a>
+                            </td>
                             </td>
                         </tr>
                     {% endfor %}
@@ -38,6 +38,5 @@
             {% else %}
                 <p>Корзина пуста</p>
             {% endif %}
-        </div>
     </section>
 {% endblock %}

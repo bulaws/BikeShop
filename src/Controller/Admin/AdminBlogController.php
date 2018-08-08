@@ -63,7 +63,7 @@ class AdminBlogController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($newArticle);
             $em->flush();
-            return $this->redirectToRoute('blog');
+            return $this->redirectToRoute('adminBlog');
         }
         return $this->render('admin/blog/createArticle.html.twig', [
             'form' => $form->createView()
@@ -79,7 +79,7 @@ class AdminBlogController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirectToRoute('blog');
+            return $this->redirectToRoute('adminBlog');
         }
         return $this->render('admin/blog/updateArticle.html.twig', [
             'form' => $form->createView()
